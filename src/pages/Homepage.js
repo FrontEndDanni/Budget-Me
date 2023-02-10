@@ -9,7 +9,7 @@ export default function Homepage() {
     <>
         <div className="register">
             <div className="card">
-                <div className="left">
+                <div className="right">
                     <h1>budgetMe</h1>
                     <p>Information about the application and everything it does will go here in this funny box.</p>
                     <span>Already have an account?</span>
@@ -18,8 +18,8 @@ export default function Homepage() {
                     </Link>
                 </div>
 
-                <div className="right">
-                    <h1>Register</h1>
+                <div className="left">
+                    <h1>Create a Free Account</h1>
                     <form>
                         <Link to="/register">
                             <Button>Register</Button>
