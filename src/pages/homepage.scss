@@ -1,81 +1,146 @@
-.register{
+.register {
     height: 100vh;
-    background-color: rgb(193,190,255);
+    background-color: rgb(193, 190, 255);
     display: flex;
-    align-items:center;
-    justify-content:center;
-
-    .card{
+    align-items: center;
+    justify-content: center;
+    
+    .card {
+    display: flex;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: row-reverse;
+    max-width: 65%;
+    width: 90%;
+    
+  
+    .right {
+      flex: 1;
+      background: linear-gradient(
+          rgba(39, 11, 96, 0.5),
+          rgba(39, 11, 96, 0.5)
+        ),
+        url("https://images.unsplash.com/photo-1554768804-50c1e2b50a6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") center;
+      background-size: cover;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      color: white;
+    
+      h1 {
+        font-size: 50px;
+        line-height: 100px;
+      }
+    
+      span {
+        font-size: 14px;
+      }
+    
+      button {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        background-color: white;
+        color: #e67e22;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    
+    .left {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      justify-content: center;
+    
+      h1 {
+        color: #555;
+      }
+    
+      form {
         display: flex;
-        background-color:white;
-        width:50%;
-        border-radius:10px;
-        min-height:600px;
-        overflow:hidden;
-        flex-direction:row-reverse;
-
-        .right{
-            flex:1;
-            background: linear-gradient(rgba(39,11,96,0.5), rgba(39,11,96,0.5)), url("https://images.unsplash.com/photo-1554768804-50c1e2b50a6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") center;
-            background-size:cover;
-            padding:50px;
-            display: flex;
-            flex-direction: column;
-            gap:30px;
-            color:white;
-            h1{
-                font-size:50px;
-                line-height:100px;
-            }
-            p{
-
-            }
-            span{
-                font-size:14px;
-            }
-            button{
-                width:50%;
-                padding:10px;
-                border:none;
-                background-color:white;
-                color:rebeccapurple;
-                font-weight:bold;
-                cursor:pointer;
-
-            }
+        flex-direction: column;
+        gap: 30px;
+    
+        input {
+          border: none;
+          border-bottom: 1px solid lightgray;
+          padding: 20px 10px;
         }
-        .left{
-            flex:1;
-            padding:50px;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-            justify-content:center;
-
-            h1{
-                color:#555;
-            }
-            form{
-                display: flex;
-                flex-direction:column;
-                gap:30px;
-
-                input{
-                    border:none;
-                    border-bottom:1px solid lightgray;
-                    padding:20px 10px;
-                }
-                button{
-                    width: 50%;
-                    padding:10px;
-                    border:none;
-                    background-color:#938eef;
-                    color:white;
-                    font-weight:bold;
-                    cursor:pointer;
-                }
-            }
-
+    
+        button {
+          width: 50%;
+          padding: 10px;
+          border: none;
+          background-color: #e67e22;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
         }
+      }
+    }
+    }
+    
+    @media screen and (max-width: 1200px) {
+    .card {
+    flex-direction: column;
+    max-width: 500px;
+    
+   
+      .right,
+      .left {
+        flex: none;
+        width: 100%;
+      }
+      
+    
+      .right {
+        height: 53.5vh;
+      }
+    }
+    }
+    
+    @media screen and (max-width: 768px) {
+    .card {
+    flex-direction: column;
+    max-width: 500px;
+   
+      .right {
+        height: 50vh;
+        padding: 20px;
+        flex-shrink:0;
+      }
+    
+      .left {
+        padding: 20px;
+        overflow-y:auto;
+      }
+    }
+    }
+    
+    @media screen and (max-width: 480px) {
+    .card {
+    flex-direction: column;
+    max-width: 300px;
+    
+    
+      .right {
+        height: 40vh;
+        padding: 10px;
+      }
+    
+      .left {
+        padding: 10px;
+      }
     }
 }
+}
+    
+    
+    
+    
