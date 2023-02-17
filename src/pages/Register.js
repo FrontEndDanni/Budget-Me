@@ -20,10 +20,6 @@ export default function Register() {
             <h1>Create your Account</h1>
             <form>
               <label>
-                Username:
-                <input type="text" className="form-control" />
-              </label>
-              <label>
                 Email:
                 <input type="email" className="form-control" />
               </label>

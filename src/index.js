@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
     <BudgetsProvider>
     <Navbar />
-    <br/>
+    <br />
     <App />
     </BudgetsProvider>
   </React.StrictMode>

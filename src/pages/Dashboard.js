@@ -27,7 +27,7 @@ export default function Dashboard() {
     <Stack direction="horizontal" gap="2" className="mb-4">
       <h1 className="me-auto">Your Budgets</h1>
       <Button variant="success" onClick={()=> setShowAddBudgetModal(true)}>Add Budget</Button>
-      <Button variant="outline-success" onClick={openAddExpenseModal}>Add Expense</Button>
+      <Button variant="success" onClick={openAddExpenseModal}>Add Expense</Button>
     </Stack>
     <div style={{display:"grid", 
     gridTemplateColumns: "repeat(auto-fill,minmax(300px, 1fr))",
