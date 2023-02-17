@@ -2,6 +2,7 @@ import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import LandingPage from './pages/LandingPage';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,7 +16,7 @@ function App() {
       element:<Dashboard/>
     },
     {
-      path:"/",
+      path:"/home",
       element:<Homepage/>
     },
     {
@@ -25,6 +26,10 @@ function App() {
     {
       path:"/register",
       element:<Register/>
+    },
+    {
+      path:"/",
+      element:<LandingPage/>
     },
   ])
   return (
