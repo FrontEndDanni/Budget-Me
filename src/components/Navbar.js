@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap';
+import Logo from '../assets/logo.png';
 
 //TODO: Debug navbar
 // Third navbar's slide-out menu x/close button does NOT work without 
@@ -8,76 +9,20 @@ import { Button } from 'react-bootstrap';
 export default function Navbar() {
   return (
     <>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" hidden>
-        <div className="container-fluid">
-            <a className="navbar-brand mx-4" href="/">budgetMe</a>
-    <button 
-      className="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarButtonsExample"
-      aria-controls="navbarButtonsExample"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      >
-        <i className="fas fa-bars"></i>
-      </button>
-
-      <div className="collapse navbar-collapse" id="navbarButtonsExample">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-link" href="#">Dashboard</li>
-        </ul>
-
-        <div className="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-light px-3 me-2">
-            Login
-          </button>
-          <button type="button" class="btn btn-primary me-3">
-            Sign up for free
-          </button>
-        </div>
-      </div>
-  </div>
-</nav>
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" hidden>
-  <div class="container-fluid">
-    <a class="navbar-brand mx-4" href="#">budgetMe</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
-        </li>
-      </ul>
-      <div className="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-light px-3 me-2">
-            Login
-          </button>
-          <button type="button" class="btn btn-primary me-3">
-            Sign Up
-          </button>
-        </div>
-    </div>
-  </div>
-</nav>
 
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand mx-4" href="/">budgetMe</a>
+        <a class="navbar-brand mx-4" href="/">
+        <img src={Logo} alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2" />
+          budgetMe</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">budgetMe</h5>
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+            <img src={Logo} alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2" />budgetMe</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">

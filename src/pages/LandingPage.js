@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 export default function LandingPage() {
     return (
         <>
+        <div className="video-container">
             <video autoPlay playsInline loop muted preload="auto">
                 <source src={Video} type="video/mp4" />
-            </video>
+            </video></div>
             <div className="overlay"></div>
             <div className="content">
                 <h1>budgetMe</h1>
