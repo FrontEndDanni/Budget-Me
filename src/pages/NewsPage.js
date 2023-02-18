@@ -43,8 +43,9 @@ const NewsPage = () => {
       <div id="carousel">
         <div className="searchBox">
           <input
+            className="searchBar"
             type="text"
-            placeholder="Search articles"
+            placeholder="Search news..."
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
@@ -52,12 +53,9 @@ const NewsPage = () => {
         <ul id="article-list" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
           {filteredNews?.slice(0, 6).map((article, index) => (
             <li className="newsPic" key={index}>
-              <img src={article.urlToImage} 
-              alt="Article Thumbnail"
-              onError={event=> {
-                event.target.src = "https://cdn-icons-png.flaticon.com/512/9435/9435506.png"
-                event.onerror = null
-              }}
+              <img src={article.urlToImage ? article.urlToImage : 'https://cdn-icons-png.flaticon.com/512/9435/9435506.png'} 
+              alt={article.title}
+              
               
               />
               <h3>{article.title}</h3>
