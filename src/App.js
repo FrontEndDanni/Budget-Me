@@ -3,6 +3,7 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import LandingPage from './pages/LandingPage';
+import NewsPage from './pages/NewsPage';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -30,6 +31,10 @@ function App() {
     {
       path:"/",
       element:<LandingPage/>
+    },
+    {
+      path:"/news",
+      element:<NewsPage/>
     },
   ])
   return (
