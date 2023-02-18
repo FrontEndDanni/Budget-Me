@@ -3,18 +3,24 @@ import './newspage.scss';
 
 const NewsPage = () => {
   const [newsData, setNewsData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const apiKey = 'a3db0dce13d243159ac83c34303ef2e6';
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`, {
+    const url = searchQuery
+      ? `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}`
+      : `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`;
+      console.log(apiKey);
+
+    fetch(url, {
       method: 'GET',
       mode: 'cors',
     })
       .then((response) => response.json())
       .then((data) => setNewsData(data.articles))
       .catch((error) => console.log(error.message));
-  }, []);
+  }, [searchQuery]);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -26,14 +32,34 @@ const NewsPage = () => {
     setActiveIndex(activeIndex + 1);
   };
 
+  const filteredNews = newsData?.filter((article) =>
+    article.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div>
-      <h1>Business and Finance News</h1>
+    <div className="newsContainer">
+      <h1 className="newsTitle">Business and Finance News</h1>
+      <center><span className="newsSpan">Stay up-to-date with all the latest in business.</span></center>
       <div id="carousel">
+        <div className="searchBox">
+          <input
+            type="text"
+            placeholder="Search articles"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
+        </div>
         <ul id="article-list" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-          {newsData.slice(0, 6).map((article, index) => (
+          {filteredNews?.slice(0, 6).map((article, index) => (
             <li className="newsPic" key={index}>
-              <img src={article.urlToImage} alt="Article Thumbnail" />
+              <img src={article.urlToImage} 
+              alt="Article Thumbnail"
+              onError={event=> {
+                event.target.src = "https://cdn-icons-png.flaticon.com/512/9435/9435506.png"
+                event.onerror = null
+              }}
+              
+              />
               <h3>{article.title}</h3>
               <p>{article.description}</p>
             </li>
@@ -51,3 +77,4 @@ const NewsPage = () => {
 };
 
 export default NewsPage;
+
