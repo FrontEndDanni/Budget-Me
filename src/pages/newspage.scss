@@ -17,6 +17,25 @@ body {
     border-radius:10px;
 }
 
+.searchContainer {
+  position: relative;
+}
+
+.searchButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border:none;
+  border-radius:10px;
+  padding-left:.5rem;
+  padding-right:.5rem;
+  background-color:#e67e22;
+  color:white;
+  font-weight:bold;
+}
+
+
 h1 {
   font-size: 2.5rem;
   text-align: center;
@@ -74,16 +93,19 @@ h1 {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: #3498db;
+  background-color: #e67e22;
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
-  margin: 1rem;
+  margin: .5rem;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 
   &:hover:enabled {
-    background-color: #2980b9;
+    background-color: #ff9f4a;
   }
+
+
 
   &:disabled {
     opacity: 0.5;

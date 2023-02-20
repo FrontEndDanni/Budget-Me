@@ -4,14 +4,16 @@ import './newspage.scss';
 const NewsPage = () => {
   const [newsData, setNewsData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
     const url = searchQuery
-      ? `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}`
-      : `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`;
-      console.log(apiKey);
+      ? `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}&pageSize=6&page=${currentPage}`
+      : `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}&pageSize=6&page=${currentPage}`;
 
     fetch(url, {
       method: 'GET',
@@ -20,16 +22,14 @@ const NewsPage = () => {
       .then((response) => response.json())
       .then((data) => setNewsData(data.articles))
       .catch((error) => console.log(error.message));
-  }, [searchQuery]);
-
-  const [activeIndex, setActiveIndex] = useState(0);
+  }, [searchQuery, currentPage]);
 
   const handlePrev = () => {
-    setActiveIndex(activeIndex - 1);
+    setCurrentPage(currentPage - 1);
   };
 
   const handleNext = () => {
-    setActiveIndex(activeIndex + 1);
+    setCurrentPage(currentPage + 1);
   };
 
   const filteredNews = newsData?.filter((article) =>
@@ -42,16 +42,23 @@ const NewsPage = () => {
       <center><span className="newsSpan">Stay up-to-date with all the latest in business.</span></center>
       <div id="carousel">
         <div className="searchBox">
-          <input
-            className="searchBar"
-            type="text"
-            placeholder="Search news..."
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-          />
+           <div className="searchContainer">
+              <input
+                className="searchBar"
+                type="text"
+                placeholder="Search news..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+            />
+            <button className="searchButton" onClick={() => setCurrentPage(1)}>
+              Search
+            </button>
+          </div>
         </div>
+
         <ul id="article-list" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-          {filteredNews?.slice(0, 6).map((article, index) => (
+
+          {filteredNews?.map((article, index) => (
             <li className="newsPic" key={index}>
               <img src={article.urlToImage ? article.urlToImage : 'https://cdn-icons-png.flaticon.com/512/9435/9435506.png'} 
               alt={article.title}
@@ -63,10 +70,10 @@ const NewsPage = () => {
             </li>
           ))}
         </ul>
-        <button id="prev" onClick={handlePrev} disabled={activeIndex === 0}>
+        <button id="prev" onClick={handlePrev} disabled={currentPage === 1}>
           Prev
         </button>
-        <button id="next" onClick={handleNext} disabled={activeIndex === 4}>
+        <button id="next" onClick={handleNext} disabled={filteredNews?.length < 6}>
           Next
         </button>
       </div>
@@ -75,4 +82,3 @@ const NewsPage = () => {
 };
 
 export default NewsPage;
-
