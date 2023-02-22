@@ -4,6 +4,7 @@ import "./cryptorates.scss";
 
 function CoinList() {
   const [coins, setCoins] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const options = {
@@ -15,7 +16,7 @@ function CoinList() {
         "tiers[0]": "1",
         orderBy: "marketCap",
         orderDirection: "desc",
-        limit: "50",
+        limit: "25",
         offset: "0",
       },
       headers: {
@@ -34,10 +35,26 @@ function CoinList() {
       });
   }, []);
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredCoins = coins.filter((coin) =>
+    coin.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="coin-list">
       <h1>Crypto Coins</h1>
-      <center><span className="cryptoSpan">Get a peek at the latest cryptocurrency exchange rates.</span></center>
+      <center><span className="cryptoSpan">Catch a glimpse at crypto.</span>
+      <br />
+     <input
+        className="searchCrypto"
+        type="text"
+        placeholder="Search for a coin..."
+        value={searchQuery}
+        onChange={handleSearch}
+      /></center> 
       <table>
         <thead>
           <tr>
@@ -49,7 +66,7 @@ function CoinList() {
           </tr>
         </thead>
         <tbody>
-          {coins.map((coin) => (
+          {filteredCoins.map((coin) => (
             <tr key={coin.id}>
               <td>{coin.name}</td>
               <td>{coin.symbol}</td>

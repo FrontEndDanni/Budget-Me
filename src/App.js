@@ -1,3 +1,4 @@
+import './App.scss';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
