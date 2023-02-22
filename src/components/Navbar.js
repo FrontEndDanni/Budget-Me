@@ -42,7 +42,7 @@ export default function Navbar() {
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="/news">News</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="/crypto">Crypto</a></li>
                   <li>
                     <hr class="dropdown-divider"/>
                   </li>

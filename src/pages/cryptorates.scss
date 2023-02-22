@@ -1,0 +1,50 @@
+.coin-list {
+  margin: 3rem;
+  font-family: sans-serif;
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight:bolder;
+  }
+
+  .cryptoSpan{
+    font-size:1.5rem;
+    margin:2rem 0;
+    font-weight:bolder;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+    th,
+    td {
+      padding: 0.5rem;
+      border: black solid 2px;
+    }
+
+    th {
+      background-color: #f1f1f1;
+      font-size:larger;
+    }
+
+    tr {
+        background-color:#e67e22;
+        transition:background-color 0.2s ease;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+    
+
+    tr:hover {
+      background-color: #ddd;
+      font-weight:bolder;
+    }
+  }
+}

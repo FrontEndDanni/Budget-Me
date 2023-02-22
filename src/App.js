@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import LandingPage from './pages/LandingPage';
 import NewsPage from './pages/NewsPage';
+import CryptoRates from './pages/CryptoRates';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -35,6 +36,10 @@ function App() {
     {
       path:"/news",
       element:<NewsPage/>
+    },
+    {
+      path:"/crypto",
+      element:<CryptoRates/>
     },
   ])
   return (
