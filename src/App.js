@@ -13,6 +13,10 @@ import {
 } from "react-router-dom";
 
 function App() {
+  
+  const logout = async () => {
+
+  }
   const router = createBrowserRouter([
     {
       path:"/dashboard",

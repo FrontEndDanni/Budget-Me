@@ -1,10 +1,23 @@
 import { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Button, Stack } from 'react-bootstrap';
 import "./register.scss";
-import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
+import { auth } from '../firebase-config';
 
 export default function Register() {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+        console.log(user)
+      } catch (error){
+        console.log(error.message);
+      }
+  };
+
   const [password, setPassword] = useState('');
 
   function validatePassword() {
@@ -21,11 +34,25 @@ export default function Register() {
             <form>
               <label>
                 Email:
-                <input type="email" className="form-control" />
+                <input 
+                  type="email" 
+                  className="form-control"
+                  onChange={(event) => {
+                    setRegisterEmail(event.target.value)
+                  }} />
               </label>
               <label>
                 Password:
-                <input type="password" label="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input 
+                  type="password" 
+                  label="password" 
+                  className="form-control" 
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setRegisterPassword(e.target.value);
+                  }}
+                   />
               </label>
               {password.length > 0 &&
                 <div className={validatePassword() ? 'validPassword' : 'invalidPassword'}>
@@ -34,7 +61,7 @@ export default function Register() {
               }
               <center>
                 <Link to="#">
-                  <Button>Register</Button>
+                  <Button onClick={register}>Register</Button>
                 </Link>
                 <br></br>
                 <br></br>
