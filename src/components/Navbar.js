@@ -1,12 +1,12 @@
 import { Button } from 'react-bootstrap';
 import Logo from '../assets/logo.png';
-
-//TODO: Debug navbar
-// Third navbar's slide-out menu x/close button does NOT work without 
-// first two navbar codes. Not sure why. Don't remove them until resolved.
-
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase-config';
 
 export default function Navbar() {
+  const logout = async () => {
+    await signOut(auth);
+  }; 
   return (
     <>
 
@@ -52,7 +52,11 @@ export default function Navbar() {
             </ul>
             <form class="d-flex mt-3" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-              <Button class="btn btn-success" type="submit">Search</Button>
+              <Button 
+                class="btn btn-success" 
+                type="submit"
+                onClick={logout}
+                >Logout</Button>
             </form>
           </div>
         </div>
