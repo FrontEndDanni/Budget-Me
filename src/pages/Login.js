@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button,Stack } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import "./login.scss";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase-config';

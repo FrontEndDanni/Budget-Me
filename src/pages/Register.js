@@ -2,20 +2,27 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Button, Stack } from 'react-bootstrap';
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from '../firebase-config';
 
 export default function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // Add error message state
+  const navigate = useNavigate();
 
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-        console.log(user)
-      } catch (error){
-        console.log(error.message);
+      console.log(user);
+      navigate('/dashboard');
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setErrorMessage("This email is already in use! Please use a different email, or log in to this existing account.");
+      } else {
+        setErrorMessage(error.message);
       }
+    }
   };
 
   const [password, setPassword] = useState('');
@@ -52,13 +59,14 @@ export default function Register() {
                     setPassword(e.target.value);
                     setRegisterPassword(e.target.value);
                   }}
-                   />
+                />
               </label>
               {password.length > 0 &&
                 <div className={validatePassword() ? 'validPassword' : 'invalidPassword'}>
                   {validatePassword() ? 'Password is secure!' : 'Password must be at least 8 characters with at least one capital letter, one number, and one punctuation mark.'}
                 </div>
               }
+              {errorMessage && <div className="error">{errorMessage}</div>} {/* Display error message */}
               <center>
                 <Link to="#">
                   <Button onClick={register}>Register</Button>
@@ -69,10 +77,8 @@ export default function Register() {
               </center>
             </form>
           </div>
-
         </div>
       </div>
-
     </>
-  )
+  );
 }
