@@ -1,18 +1,36 @@
-import { Form, Modal, Button } from "react-bootstrap"
-import { useRef } from "react"
-import { useBudgets } from "../contexts/BudgetsContext"
+import { Form, Modal, Button } from "react-bootstrap";
+import { useRef } from "react";
+import { useBudgets } from "../contexts/BudgetsContext";
 
 export default function AddBudgetModal({ show, handleClose }) {
-  const nameRef = useRef()
-  const maxRef = useRef()
-  const { addBudget } = useBudgets()
+  const nameRef = useRef();
+  const maxRef = useRef();
+  const { addBudget } = useBudgets();
+
   function handleSubmit(e) {
-    e.preventDefault()
-    addBudget({
-      name: nameRef.current.value,
-      max: parseFloat(maxRef.current.value),
-    })
-    handleClose()
+    e.preventDefault();
+
+    const budgetName = nameRef.current.value;
+    const maximumSpending = parseFloat(maxRef.current.value);
+
+    console.log("Budget Name:", budgetName);
+    console.log("Maximum Spending:", maximumSpending);
+
+    if (!budgetName || isNaN(maximumSpending)) {
+      console.error("Invalid budget data");
+      return;
+    }
+
+    const budgetData = {
+      name: budgetName,
+      max: maximumSpending,
+    };
+
+    console.log("Budget Data:", budgetData);
+
+    addBudget(budgetData);
+
+    handleClose();
   }
 
   return (
@@ -44,5 +62,5 @@ export default function AddBudgetModal({ show, handleClose }) {
         </Modal.Body>
       </Form>
     </Modal>
-  )
+  );
 }

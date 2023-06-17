@@ -40,9 +40,11 @@ export default function Navbar() {
           </div>
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/register">Sign Up</a>
-              </li>
+              {!isLoggedIn && (
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/register">Sign Up</a>
+                </li>
+              )}
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/home">Home</a>
               </li>
